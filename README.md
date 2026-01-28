@@ -52,7 +52,7 @@ $ secloop run .
 ## Installation
 
 ```bash
-pip install secloop
+pip install git+https://github.com/Nancy-Chauhan/secloop.git
 ```
 
 Install the security tools you need:
@@ -156,7 +156,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install secloop pip-audit
+      - run: pip install git+https://github.com/Nancy-Chauhan/secloop.git pip-audit
       - run: secloop audit . --format sarif > results.sarif
       - uses: github/codeql-action/upload-sarif@v3
         with:
