@@ -1,0 +1,28 @@
+# Ralph Loop Configuration
+
+# Maximum number of iterations before giving up
+max_iterations: 10
+
+# Completion token - loop exits when this appears in output
+completion_token: "<COMPLETE>"
+
+# Project settings
+project:
+  path: "sample_project"
+  requirements_file: "requirements.txt"
+
+# Security scanning
+scanner:
+  tool: "pip-audit"
+  severity_threshold: "all"  # all, high, critical
+
+# Testing
+tests:
+  enabled: true
+  command: "pytest -v"
+  fail_on_error: true
+
+# Output
+output:
+  directory: "output"
+  keep_all_iterations: true
