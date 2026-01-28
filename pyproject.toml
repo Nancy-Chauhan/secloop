@@ -3,16 +3,16 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ralph-loop"
-version = "0.1.0"
-description = "Autonomous dependency vulnerability patcher using LLM loops"
+name = "secloop"
+version = "0.2.0"
+description = "Autonomous security scanner & fixer using LLM loops"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [
-    { name = "Your Name", email = "you@example.com" }
+    { name = "Nancy Chauhan" }
 ]
-keywords = ["security", "vulnerabilities", "ai", "llm", "automation"]
+keywords = ["security", "vulnerabilities", "ai", "llm", "automation", "sast", "secrets", "devsecops"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
@@ -42,15 +42,15 @@ dev = [
 ]
 
 [project.scripts]
-ralph = "ralph.cli:app"
+secloop = "secloop.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/ralph-loop"
-Documentation = "https://github.com/yourusername/ralph-loop#readme"
-Repository = "https://github.com/yourusername/ralph-loop"
+Homepage = "https://github.com/Nancy-Chauhan/secloop"
+Documentation = "https://github.com/Nancy-Chauhan/secloop#readme"
+Repository = "https://github.com/Nancy-Chauhan/secloop"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/ralph"]
+packages = ["src/secloop"]
 
 [tool.hatch.build.targets.sdist]
 include = [

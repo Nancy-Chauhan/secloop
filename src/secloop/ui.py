@@ -14,11 +14,11 @@ console = Console()
 
 
 def print_banner():
-    """Print the Ralph Loop banner."""
+    """Print the SecLoop banner."""
     banner = """
 [bold blue]╭─────────────────────────────────────────╮[/]
-[bold blue]│[/]  [bold white]🔄 RALPH LOOP[/]                          [bold blue]│[/]
-[bold blue]│[/]  [dim]Autonomous Vulnerability Patcher[/]      [bold blue]│[/]
+[bold blue]│[/]  [bold white]🔐 SECLOOP[/]                              [bold blue]│[/]
+[bold blue]│[/]  [dim]Autonomous Security Scanner & Fixer[/]   [bold blue]│[/]
 [bold blue]╰─────────────────────────────────────────╯[/]
 """
     console.print(banner)
