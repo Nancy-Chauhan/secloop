@@ -343,7 +343,12 @@ def audit(
         secloop audit ./my-project
         secloop audit . --format sarif > results.sarif
     """
-    ui.print_banner()
+    # For machine-readable formats, suppress UI output
+    show_ui = output_format == "table"
+
+    if show_ui:
+        ui.print_banner()
+
     results = {
         "dependencies": [],
         "secrets": [],
@@ -357,41 +362,47 @@ def audit(
         try:
             dep_scanner = get_scanner(ecosystem)
             if dep_scanner.is_available():
-                ui.print_step(f"Scanning {ecosystem} dependencies...")
+                if show_ui:
+                    ui.print_step(f"Scanning {ecosystem} dependencies...")
                 vulns = dep_scanner.scan(path)
                 results["dependencies"] = [v.to_dict() for v in vulns]
                 total_issues += len(vulns)
-                ui.print_scan_results(results["dependencies"], ecosystem)
+                if show_ui:
+                    ui.print_scan_results(results["dependencies"], ecosystem)
         except ValueError:
             pass
 
     # Secrets
     secret_scanner = SecretScanner()
     if secret_scanner.is_available():
-        ui.print_step("Scanning for secrets...")
-        secrets = secret_scanner.scan(path)
-        results["secrets"] = [s.to_dict() for s in secrets]
-        total_issues += len(secrets)
-        _print_secrets_table(secrets)
+        if show_ui:
+            ui.print_step("Scanning for secrets...")
+        secrets_found = secret_scanner.scan(path)
+        results["secrets"] = [s.to_dict() for s in secrets_found]
+        total_issues += len(secrets_found)
+        if show_ui:
+            _print_secrets_table(secrets_found)
 
     # SAST
     sast_scanner = SASTScanner()
     if sast_scanner.is_available():
-        ui.print_step("Running SAST analysis...")
+        if show_ui:
+            ui.print_step("Running SAST analysis...")
         findings = sast_scanner.scan(path)
         results["sast"] = [f.to_dict() for f in findings]
         total_issues += len(findings)
-        _print_sast_table(findings)
+        if show_ui:
+            _print_sast_table(findings)
 
-    # Summary
-    console.print()
-    console.print(f"[bold]Total issues found: {total_issues}[/]")
-
+    # Output
     if output_format == "json":
         import json
-        console.print(json.dumps(results, indent=2))
+        print(json.dumps(results, indent=2))
     elif output_format == "sarif":
-        console.print(_to_sarif(results))
+        print(_to_sarif(results))
+    else:
+        console.print()
+        console.print(f"[bold]Total issues found: {total_issues}[/]")
 
     raise typer.Exit(0 if total_issues == 0 else 1)
 
