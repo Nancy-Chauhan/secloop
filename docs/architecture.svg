@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="900" height="520" fill="#ffffff" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="50" y="20" width="800" height="60" rx="10" fill="#1971c2"/>
+  <text x="450" y="58" text-anchor="middle" fill="#ffffff" font-size="28" font-weight="bold">SecLoop</text>
+  <text x="450" y="100" text-anchor="middle" fill="#495057" font-size="16">Autonomous Security Scanner &amp; Auto-Fixer Powered by LLMs</text>
+
+  <!-- SCAN box -->
+  <rect x="60" y="140" width="220" height="130" rx="10" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2.5"/>
+  <text x="170" y="172" text-anchor="middle" fill="#2b8a3e" font-size="22" font-weight="bold">SCAN</text>
+  <text x="170" y="198" text-anchor="middle" fill="#495057" font-size="13">Dependencies</text>
+  <text x="170" y="216" text-anchor="middle" fill="#495057" font-size="13">Secrets</text>
+  <text x="170" y="234" text-anchor="middle" fill="#495057" font-size="13">SAST &amp; CVEs</text>
+
+  <!-- Arrow: SCAN -> FIX -->
+  <line x1="280" y1="205" x2="330" y2="205" stroke="#495057" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- FIX box -->
+  <rect x="340" y="140" width="220" height="130" rx="10" fill="#ffe8cc" stroke="#e67700" stroke-width="2.5"/>
+  <text x="450" y="172" text-anchor="middle" fill="#e67700" font-size="22" font-weight="bold">FIX</text>
+  <text x="450" y="198" text-anchor="middle" fill="#495057" font-size="13">LLM generates</text>
+  <text x="450" y="216" text-anchor="middle" fill="#495057" font-size="13">patches for</text>
+  <text x="450" y="234" text-anchor="middle" fill="#495057" font-size="13">vulnerabilities</text>
+
+  <!-- Arrow: FIX -> TEST -->
+  <line x1="560" y1="205" x2="610" y2="205" stroke="#495057" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- TEST box -->
+  <rect x="620" y="140" width="220" height="130" rx="10" fill="#f3d9fa" stroke="#862e9c" stroke-width="2.5"/>
+  <text x="730" y="172" text-anchor="middle" fill="#862e9c" font-size="22" font-weight="bold">TEST</text>
+  <text x="730" y="198" text-anchor="middle" fill="#495057" font-size="13">Verify fixes</text>
+  <text x="730" y="216" text-anchor="middle" fill="#495057" font-size="13">Run tests</text>
+  <text x="730" y="234" text-anchor="middle" fill="#495057" font-size="13">Ensure nothing broke</text>
+
+  <!-- Loop arrow: TEST -> SCAN (goes below) -->
+  <path d="M 730 270 L 730 300 Q 730 310 720 310 L 180 310 Q 170 310 170 300 L 170 270"
+        fill="none" stroke="#e03131" stroke-width="3" stroke-dasharray="8,4" marker-end="url(#arrowhead-red)"/>
+  <rect x="360" y="298" width="180" height="24" rx="4" fill="#ffffff"/>
+  <text x="450" y="316" text-anchor="middle" fill="#e03131" font-size="14" font-weight="600">Loop until clean</text>
+
+  <!-- Divider -->
+  <line x1="80" y1="350" x2="820" y2="350" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="450" y="378" text-anchor="middle" fill="#495057" font-size="16" font-weight="bold">Integrated Security Tools</text>
+
+  <!-- Tool box 1: Dependencies -->
+  <rect x="60" y="395" width="250" height="100" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="1.5"/>
+  <text x="185" y="420" text-anchor="middle" fill="#2b8a3e" font-size="15" font-weight="bold">Dependencies</text>
+  <text x="185" y="442" text-anchor="middle" fill="#495057" font-size="12">pip-audit, npm audit, cargo-audit</text>
+  <text x="185" y="460" text-anchor="middle" fill="#495057" font-size="12">CVE detection</text>
+
+  <!-- Tool box 2: Secrets -->
+  <rect x="325" y="395" width="250" height="100" rx="8" fill="#ffe8cc" stroke="#e67700" stroke-width="1.5"/>
+  <text x="450" y="420" text-anchor="middle" fill="#e67700" font-size="15" font-weight="bold">Secrets</text>
+  <text x="450" y="442" text-anchor="middle" fill="#495057" font-size="12">gitleaks</text>
+  <text x="450" y="460" text-anchor="middle" fill="#495057" font-size="12">API keys, passwords, tokens</text>
+
+  <!-- Tool box 3: SAST -->
+  <rect x="590" y="395" width="250" height="100" rx="8" fill="#f3d9fa" stroke="#862e9c" stroke-width="1.5"/>
+  <text x="715" y="420" text-anchor="middle" fill="#862e9c" font-size="15" font-weight="bold">SAST</text>
+  <text x="715" y="442" text-anchor="middle" fill="#495057" font-size="12">semgrep, bandit</text>
+  <text x="715" y="460" text-anchor="middle" fill="#495057" font-size="12">SQL injection, XSS, cmd injection</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#495057"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e03131"/>
+    </marker>
+  </defs>
+</svg>

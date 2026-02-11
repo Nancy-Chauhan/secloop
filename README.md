@@ -110,21 +110,14 @@ secloop run . --max-iterations 5
 
 SecLoop uses the **Ralph Loop** pattern—an iterative LLM loop:
 
-```
-┌─────────────────────────────────────────────────┐
-│   ┌─────────┐    ┌─────────┐    ┌─────────┐   │
-│   │  SCAN   │───▶│   FIX   │───▶│  TEST   │   │
-│   └─────────┘    └─────────┘    └─────────┘   │
-│        ▲                              │        │
-│        └──────────────────────────────┘        │
-│              Loop until clean                   │
-└─────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="docs/architecture.svg" alt="SecLoop Architecture" width="700"/>
+</p>
 
-1. **Scan** — Run security tools
-2. **Fix** — LLM generates patches
+1. **Scan** — Run security tools (pip-audit, semgrep, gitleaks, etc.)
+2. **Fix** — LLM generates patches for vulnerabilities
 3. **Test** — Verify nothing broke
-4. **Repeat** — Until all vulnerabilities fixed
+4. **Repeat** — Loop until all vulnerabilities are fixed
 
 ## Configuration
 
